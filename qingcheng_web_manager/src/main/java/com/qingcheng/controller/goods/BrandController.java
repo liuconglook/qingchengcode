@@ -76,7 +76,6 @@ public class BrandController {
      */
     @PostMapping("/add")
     public Result add(@RequestBody Brand brand) {
-        int x = 1/0;
         brandService.add(brand);
         return new Result();
     }

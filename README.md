@@ -109,6 +109,47 @@
 - `RabbitMQ` # `AMQR`高级消息队列协议的实现
   - spring-rabbit
 
+### 三、黑马架构师
+
+#### 1、安装
+
+下载地址：https://gitee.com/chuanzhiliubei/codeutil
+
+免安装，解压到没有中文的目录下即可。
+
+#### 2、生成代码
+
+双击.bat文件运行。
+
+- 登录数据库
+- 选择数据库
+- 选择模板
+- 代码生成路径
+- 项目名、包名（三级包名）、项目中文名。
+- 生成代码
+
+#### 3、生成的坑
+
+> 文件名带时间戳
+
+- 注意pom.xml文件有可能是pom_xxxxxx.xml。
+- 注意service_xxx子项目下的实现类名带有时间戳。
+- 总之，检查所生成的文件，看文件名是否正确，当然，直接运行是会报错的。
+
+>导入模块
+
+- 需要在父工程pom.xml中手动配置下，才能导入模块。
+
+>配置文件
+
+- 公共模块下的zk.properties
+- service公共模块下的application-dao.xml导入pagehelper包
+- web公共模块下的application-json.xml需要配置oss
+
+
+
+
+
 ### 总结回顾
 
 #### 1、细节问题
@@ -139,13 +180,13 @@ Unsatisfied dependency expressed through field 'brandMapper'; nested exception i
 
 >install没用
 
-将`applicationContext-dao.xml`放回service公共模块后执行`parent`的`install:install`。
-
-成功运行后，访问却报错：显示web公共模块下的`applicationContext-dao.xml`...，还是之前的错。
-
-说明install无效，并没有覆盖之前的包。
+当有文件删除时，install不会将被删除文件剔除掉。
 
 所以再次install之前，最好先clean下。
+
+> 静态资源更新
+
+不需要重启服务
 
 #### 2、IDEA快捷键
 
@@ -169,6 +210,14 @@ Shift+Ctrl+上下键
 
 按两下Shift
 
+> 重命名文件
+
+选中文件，Shift+F6
+
+> rerun重启服务
+
+Ctrl+F5
+
 #### 3、通用Mapper
 
 - 命名规律
@@ -180,7 +229,42 @@ Shift+Ctrl+上下键
     - `Example example = new Example(Brand.class);`
     - `Example.Criteria criteria = example.createCriteria();`
 
+#### 4、ES6语法
 
+> let
+
+~~~js
+// 用var声明的变量，默认都是在函数的最上面，只要是在函数内调用这个变量都可以访问到。
+// 而let的出现就是为了解决这一问题的，只在代码块中有效。
+let name = '';
+~~~
+
+> const
+
+~~~js
+// const用于常量的定义，再给name赋值时就会报错。
+const name = '';
+~~~
+
+> 模板
+
+~~~js
+// 在`反引号中可以使用${}拼接字符串。
+var name = 'world'
+console.log(`hello ${name}`)
+~~~
+
+> 箭头函数
+
+~~~js
+// 函数式编程特性
+// 省略function、return
+var sum = (a,b) => a+b;
+// 等价于
+var sum = function(a,b){
+    return a + b;
+}
+~~~
 
 
 
